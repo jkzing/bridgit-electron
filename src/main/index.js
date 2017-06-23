@@ -44,6 +44,12 @@ app.on('activate', () => {
   }
 })
 
+app.on('before-quit', () => {
+  if (process.env.BRIDGIT_PID) {
+    process.kill(process.env.BRIDGIT_PID, 'SIGNUP')
+  }
+})
+
 /**
  * Auto Updater
  *
