@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from 'electron'
-import BridgitMgr from '../bridgit'
+import BridgitMgr from '../bridgit/BridgitManager'
 
 let mainWindow: Electron.BrowserWindow | null
 const winURL = process.env.NODE_ENV === 'development'
@@ -19,12 +19,14 @@ function createWindow () {
   mainWindow.loadURL(winURL)
 
   mainWindow.on('close', event => {
-
+    BridgitMgr.stopAll()
   })
 
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+
+  BridgitMgr.start()
 }
 
 app.on('ready', createWindow)
@@ -33,11 +35,7 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
-  console.log('bridgit: ', process.env.BRIDGIT_PID)
   BridgitMgr.stopAll()
-  if (process.env.BRIDGIT_PID) {
-    process.kill(+process.env.BRIDGIT_PID, 9)
-  }
 })
 
 app.on('activate', () => {
@@ -47,9 +45,6 @@ app.on('activate', () => {
 })
 
 app.on('before-quit', (event) => {
-  if (process.env.BRIDGIT_PID) {
-    BridgitMgr.stopAll()
-  }
 })
 
 /**

@@ -6,19 +6,22 @@
 </template>
 
 <script>
-import BridgitMgr from '../../bridgit'
+import BridgitMgr from '../../bridgit/BridgitManager'
 
 export default {
   name: 'LandingPage',
   components: {
 
   },
+  beforeDestroy() {
+    BridgitMgr.stopAll()
+  },
   methods: {
     open(link) {
       this.$electron.shell.openExternal(link)
     },
     startHawk() {
-      BridgitMgr.start()
+      BridgitMgr.createBridgit()
     },
     printBridgitProcess() {
       console.log(process.env.BRIDGIT_PID)
