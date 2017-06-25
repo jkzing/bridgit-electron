@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from 'electron'
-import { shutdown } from '../bridgit'
+import BridgitMgr from '../bridgit'
 
 let mainWindow: Electron.BrowserWindow | null
 const winURL = process.env.NODE_ENV === 'development'
@@ -34,6 +34,7 @@ app.on('window-all-closed', () => {
     app.quit()
   }
   console.log('bridgit: ', process.env.BRIDGIT_PID)
+  BridgitMgr.stopAll()
   if (process.env.BRIDGIT_PID) {
     process.kill(+process.env.BRIDGIT_PID, 9)
   }
@@ -47,7 +48,7 @@ app.on('activate', () => {
 
 app.on('before-quit', (event) => {
   if (process.env.BRIDGIT_PID) {
-    shutdown()
+    BridgitMgr.stopAll()
   }
 })
 

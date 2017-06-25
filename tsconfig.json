@@ -10,7 +10,6 @@
     "module": "es2015",
     "moduleResolution": "node",
     "isolatedModules": false,
-    "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
     "removeComments": true,

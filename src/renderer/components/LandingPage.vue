@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import bridgit, { bridgitProcess } from '../../bridgit'
+import BridgitMgr from '../../bridgit'
 
 export default {
   name: 'LandingPage',
@@ -18,8 +18,7 @@ export default {
       this.$electron.shell.openExternal(link)
     },
     startHawk() {
-      // this.$electron.process.spawn()
-      bridgit()
+      BridgitMgr.start()
     },
     printBridgitProcess() {
       console.log(process.env.BRIDGIT_PID)
