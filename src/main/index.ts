@@ -1,14 +1,7 @@
 import { app, BrowserWindow } from 'electron'
+import { shutdown } from '../bridgit'
 
-/**
- * Set `__static` path to static files in production
- * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
- */
-if (process.env.NODE_ENV !== 'development') {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
-}
-
-let mainWindow
+let mainWindow: Electron.BrowserWindow | null
 const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
@@ -25,6 +18,10 @@ function createWindow () {
 
   mainWindow.loadURL(winURL)
 
+  mainWindow.on('close', event => {
+
+  })
+
   mainWindow.on('closed', () => {
     mainWindow = null
   })
@@ -36,6 +33,10 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+  console.log('bridgit: ', process.env.BRIDGIT_PID)
+  if (process.env.BRIDGIT_PID) {
+    process.kill(+process.env.BRIDGIT_PID, 9)
+  }
 })
 
 app.on('activate', () => {
@@ -44,9 +45,9 @@ app.on('activate', () => {
   }
 })
 
-app.on('before-quit', () => {
+app.on('before-quit', (event) => {
   if (process.env.BRIDGIT_PID) {
-    process.kill(process.env.BRIDGIT_PID, 'SIGNUP')
+    shutdown()
   }
 })
 

@@ -22,7 +22,6 @@ export default {
       bridgit()
     },
     printBridgitProcess() {
-      debugger
       console.log(process.env.BRIDGIT_PID)
     }
   }
