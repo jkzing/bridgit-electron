@@ -6,6 +6,11 @@
  */
 
 /* eslint-disable */
+namespace NodeJS {
+  export interface Global {
+    __static: string;
+  }
+}
 
 // Set environment for development
 process.env.NODE_ENV = 'development'
