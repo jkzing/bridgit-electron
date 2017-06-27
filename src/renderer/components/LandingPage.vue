@@ -5,27 +5,30 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
 import BridgitMgr from '../../bridgit/BridgitManager'
 
-export default {
-  name: 'LandingPage',
-  components: {
-
-  },
+@Component({
+   name: 'LandingPage',
+   components: {}
+})
+export default class LandingPage extends Vue {
   beforeDestroy() {
     BridgitMgr.stopAll()
-  },
-  methods: {
-    open(link) {
-      this.$electron.shell.openExternal(link)
-    },
-    startHawk() {
-      BridgitMgr.createBridgit()
-    },
-    printBridgitProcess() {
-      console.log(process.env.BRIDGIT_PID)
-    }
+  }
+
+  open(link) {
+      // this.$electron.shell.openExternal(link)
+  }
+  startHawk() {
+    BridgitMgr.createBridgit()
+  }
+
+  printBridgitProcess() {
+    console.log(process.env.BRIDGIT_PID)
   }
 }
 </script>
