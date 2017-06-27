@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { Vue, Component } from 'av-ts'
 
 @Component
