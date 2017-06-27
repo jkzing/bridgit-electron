@@ -4,10 +4,13 @@
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'bridgit-electron'
-  }
+<script lang="ts">
+import { Vue, Component } from 'av-ts'
+
+@Component
+export default class App extends Vue {
+  name = 'bridgit-electron'
+}
 </script>
 
 <style>

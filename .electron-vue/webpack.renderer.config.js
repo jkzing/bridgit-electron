@@ -57,7 +57,8 @@ let rendererConfig = {
         exclude: /node_modules|vue\/src/,
         loader: 'ts-loader',
         options: {
-          appendTsSuffixTo: [/\.vue$/]
+          appendTsSuffixTo: [/\.vue$/],
+          transpileOnly: true
         }
       },
       {
@@ -74,10 +75,12 @@ let rendererConfig = {
         use: {
           loader: 'vue-loader',
           options: {
+            esModule: true,
             extractCSS: process.env.NODE_ENV === 'production',
             loaders: {
               sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
-              scss: 'vue-style-loader!css-loader!sass-loader'
+              scss: 'vue-style-loader!css-loader!sass-loader',
+              js: 'ts-loader'
             }
           }
         }
