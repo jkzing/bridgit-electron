@@ -7,18 +7,19 @@ export default class Bridgit extends Events.EventEmitter {
   constructor() {
     super()
     this.procs = spawn('node_modules/.bin/bridgit', ['hawk'])
-    // Handle normal output
+
     this.procs.stdout.on('data', data => {
-      // As said before, convert the Uint8Array to a readable string.
-      var str = String.fromCharCode.apply(null, data)
-      console.info(str)
+      // convert the Uint8Array to a readable string.
+      let message: string = String.fromCharCode.apply(null, data)
+
+      this.emit('log', message)
     })
 
-    // Handle error output
     this.procs.stderr.on('data', data => {
-      // As said before, convert the Uint8Array to a readable string.
-      var str = String.fromCharCode.apply(null, data)
-      console.error(str)
+      // onvert the Uint8Array to a readable string.
+      let error: string = String.fromCharCode.apply(null, data)
+
+      this.emit('error', error)
     })
   }
 
