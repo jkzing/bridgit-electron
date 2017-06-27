@@ -21,7 +21,7 @@ export default class LandingPage extends Vue {
   }
 
   open(link) {
-      // this.$electron.shell.openExternal(link)
+      this.$electron.shell.openExternal(link)
   }
   startHawk() {
     BridgitMgr.createBridgit()
