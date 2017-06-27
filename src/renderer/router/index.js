@@ -1,14 +1,14 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
   routes: [
     {
       path: '/',
       name: 'landing-page',
-      component: require('@/components/LandingPage')
+      component: require('@/components/LandingPage.vue')
     },
     {
       path: '*',

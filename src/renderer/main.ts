@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import App from './App'
+import App from './App.vue'
 import router from './router'
 import store from './store'
 
@@ -9,8 +9,10 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  components: { App },
+  el: '#app',
   router,
   store,
-  template: '<App/>'
-}).$mount('#app')
+  components: { App },
+  template: `<App/>`
+  // render: h => h(App)
+})

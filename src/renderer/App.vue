@@ -4,12 +4,18 @@
   </div>
 </template>
 
-<script>
-import { Vue, Component } from 'av-ts'
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
 
-@Component
+@Component({
+  name: 'App',
+  components: {}
+})
 export default class App extends Vue {
-  name = 'bridgit-electron'
+  mounted() {
+
+  }
 }
 </script>
 
