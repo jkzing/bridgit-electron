@@ -18,7 +18,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
  * that provide pure *.vue files that need compiling
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
  */
-let whiteListedModules = ['vue', 'vue-router', 'vuex', 'vue-class-component']
+let whiteListedModules = ['vue', 'vue-router', 'vuex', 'av-ts', 'vue-class-component']
 
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
@@ -57,8 +57,7 @@ let rendererConfig = {
         exclude: /node_modules|vue\/src/,
         loader: 'ts-loader',
         options: {
-          appendTsSuffixTo: [/\.vue$/],
-          transpileOnly: true
+          appendTsSuffixTo: [/\.vue$/]
         }
       },
       {
@@ -134,9 +133,10 @@ let rendererConfig = {
   },
   resolve: {
     alias: {
-      '@': path.join(__dirname, '../src/renderer')
+      '@': path.join(__dirname, '../src/renderer'),
+      'vue$': 'vue/dist/vue.esm.js'
     },
-    extensions: ['.js', '.ts', '.vue', '.json', '.css', '.node']
+    extensions: ['.js', '.ts', '.json']
   },
   target: 'electron-renderer'
 }
