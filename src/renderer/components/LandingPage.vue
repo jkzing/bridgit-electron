@@ -34,8 +34,6 @@ export default class LandingPage extends Vue {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
-
 * {
   box-sizing: border-box;
   margin: 0;
