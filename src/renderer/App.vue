@@ -1,26 +1,11 @@
 <template>
-  <!--<v-app id="app" dark>
-    <v-card>
-      <v-toolbar class="header-toolbar" light>
-        <v-toolbar-side-icon light></v-toolbar-side-icon>
-        <v-toolbar-title>Inbox</v-toolbar-title>
-        <v-btn light icon>
-          <v-icon>search</v-icon>
-        </v-btn>
-      </v-toolbar>
-    </v-card>
-    <router-view></router-view>
-  </v-app>-->
-  <v-app id="example-2">
-    <main-sidebar></main-sidebar>
-    <v-toolbar fixed class="indigo darken-4" light>
-      <v-toolbar-side-icon light @click.native.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Toolbar</v-toolbar-title>
-    </v-toolbar>
+  <v-app id="app">
+    <main-sidebar :value="drawer"></main-sidebar>
+    <main-navbar @toggle-drawer="drawer = !drawer"></main-navbar>
     <main>
       <v-container fluid>
         <div class="title">Click on sidebar to re-open.</div>
-        <!--v-router-->
+        <router-view></router-view>
       </v-container>
     </main>
   </v-app>
@@ -31,20 +16,17 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 import MainSidebar from '@/components/MainSidebar.vue'
+import MainNavbar from '@/components/MainNavbar.vue'
 
 @Component({
   name: 'App',
   components: {
     MainSidebar,
+    MainNavbar
   }
 })
 export default class App extends Vue {
   drawer = true
-  items = [
-    { title: 'Home', icon: 'dashboard' },
-    { title: 'About', icon: 'question_answer' }
-  ]
-  mini = false
   right = null
 
   mounted() {

@@ -1,5 +1,10 @@
 <template>
-  <v-navigation-drawer persistent light :mini-variant.sync="mini" v-model="drawer">
+  <v-navigation-drawer
+    :mini-variant.sync="mini"
+    permanent
+    persistent
+    light
+  >
     <v-list class="pa-0">
       <v-list-item>
         <v-list-tile avatar tag="div">
@@ -38,10 +43,13 @@ import Vue from 'vue'
 import Component from 'vue-class-component'
 
 @Component({
-  name: 'MainSidebar'
+  name: 'MainSidebar',
+  props: {
+    value: Boolean
+  }
 })
 export default class MainSidebar extends Vue {
-  mini = false
+  mini = true
   items = [
     { title: 'Home', icon: 'dashboard' },
     { title: 'About', icon: 'question_answer' }
