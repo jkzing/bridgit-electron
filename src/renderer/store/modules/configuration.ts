@@ -18,7 +18,7 @@ const Mutations = {
   }
 }
 
-export default class Instance implements Module<State, any> {
+export default class Configuration implements Module<State, any> {
 
   namespaced: boolean = true
 

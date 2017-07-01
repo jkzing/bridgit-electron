@@ -1,5 +1,4 @@
-import { ActionTree, ActionContext } from 'vuex'
-import { State } from './state'
+import { Store} from 'vuex'
 
 // increment a person type by one if possible
 // export function inc (store: ActionContext<State, any>, key: personIdentifier) {
@@ -9,5 +8,5 @@ import { State } from './state'
 // }
 
 // export everything compliant to the vuex specification for actions
-export default <ActionTree<State, any>> {
+export default {
 }
