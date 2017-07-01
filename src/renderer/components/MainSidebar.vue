@@ -9,10 +9,10 @@
       <v-list-item>
         <v-list-tile avatar tag="div">
           <v-list-tile-avatar>
-            <img src="https://randomuser.me/api/portraits/men/85.jpg" />
+            <img src="../assets/zzzz.png"></img>
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title>John Leider</v-list-tile-title>
+            <v-list-tile-title>Running Instances</v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action>
             <v-btn icon @click.native.stop="mini = !mini">
