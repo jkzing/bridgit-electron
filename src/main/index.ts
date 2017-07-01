@@ -26,6 +26,8 @@ function createWindow () {
     mainWindow = null
   })
 
+  BrowserWindow.addDevToolsExtension('node_modules/vue-devtools')
+
   BridgitMgr.start()
 }
 
