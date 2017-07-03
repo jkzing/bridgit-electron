@@ -3,9 +3,9 @@
     <v-menu bottom right>
       <v-toolbar-side-icon slot="activator" light></v-toolbar-side-icon>
       <v-list>
-        <v-list-item class="action-item" v-for="menu in menus" :key="menu.title">
-          <v-list-tile>
-            <v-list-tile-title>{{ menu.title }}</v-list-tile-title>
+        <v-list-item class="action-item">
+          <v-list-tile @click.native="navTo('NewHawkConfig')">
+            <v-list-tile-title>New Hawk Config</v-list-tile-title>
           </v-list-tile>
         </v-list-item>
       </v-list>
@@ -22,9 +22,9 @@ import Component from 'vue-class-component'
   name: 'MainNavbar',
 })
 export default class MainNavbar extends Vue {
-  menus = [{
-    title: 'Add new'
-  }]
+  navTo(name) {
+    this.$router.push({ name })
+  }
 }
 </script>
 
