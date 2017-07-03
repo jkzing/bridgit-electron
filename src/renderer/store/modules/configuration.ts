@@ -1,7 +1,14 @@
-import { Module, ActionTree, GetterTree, MutationTree } from 'vuex'
+import { Module, ActionTree, ActionContext, GetterTree, MutationTree } from 'vuex'
+import types from '../mutation-types'
+import { HawkOptions } from 'bridgit'
+
+type ConfigPayload = {
+  name: string,
+  config: HawkOptions
+}
 
 class State {
-  name = 'instance'
+  saved: Object = {}
 }
 
 const Getters = {
@@ -13,14 +20,18 @@ const Actions = {
 }
 
 const Mutations = {
-  FUCK_WECHAT(state: State) {
-
+  [types.SAVE_CONFIGURATION](state: State, payload: ConfigPayload) {
+    const {
+      name,
+      config
+    } = payload
+    state.saved = Object.assign({}, state.saved, {
+      [name]: config
+    })
   }
 }
 
 export default class Configuration implements Module<State, any> {
-
-  namespaced: boolean = true
 
   state: State
   mutations = Mutations

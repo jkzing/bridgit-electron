@@ -1,0 +1,3 @@
+export default {
+  SAVE_CONFIGURATION: 'SAVE_CONFIGURATION'
+}

@@ -5,6 +5,7 @@
     "lib": [
       "dom",
       "es5",
+      "es6",
       "es2015.promise"
     ],
     "module": "es2015",
@@ -15,10 +16,10 @@
     "removeComments": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowJs": true,
-    "target": "es5"
+    "target": "es6"
   },
   "files": [
-    "typings/index.d.ts",
+    "typings/bridgit.d.ts",
     "typings/sfc.d.ts",
     "typings/vue.d.ts"
   ],

@@ -1,65 +1,83 @@
 <template>
   <div class="hawk-config">
-    <div class="title">hawk config</div>
+    <div class="title">Add Hawk Config</div>
     <v-layout row justify-center>
       <v-flex xs8>
         <v-text-field
-          name="input-1"
+          name="input-name"
           label="Name"
+          v-model="configName"
         ></v-text-field>
       </v-flex>
     </v-layout>
     <v-layout row justify-center>
       <v-flex xs2>
         <v-text-field
-          name="input-1"
+          name="input-port"
           label="Port"
+          v-model="config.port"
         ></v-text-field>
       </v-flex>
       <v-flex xs6>
         <v-text-field
-          name="input-1"
+          name="input-origin"
           label="Origin"
+          v-model="config.origin"
         ></v-text-field>
       </v-flex>
     </v-layout>
     <v-layout row justify-center>
       <v-flex xs8>
         <v-text-field
-          name="input-1"
+          name="input-id"
           label="ID"
+          v-model="config.id"
+          required
         ></v-text-field>
       </v-flex>
     </v-layout>
     <v-layout row justify-center>
       <v-flex xs8>
         <v-text-field
-          name="input-1"
+          name="input-key"
           label="Key"
+          v-model="config.key"
+          required
         ></v-text-field>
       </v-flex>
     </v-layout>
     <v-layout row justify-center>
       <v-flex xs8>
         <v-text-field
-          name="input-1"
+          name="input-prefix"
           label="Header Prefix"
+          v-model="config.prefix"
         ></v-text-field>
       </v-flex>
     </v-layout>
     <v-layout row wrap justify-center>
       <v-flex xs4>
         <v-text-field
-          name="input-1"
+          name="input-algorithm"
           label="Algorithm"
+          v-model="config.algorithm"
         ></v-text-field>
       </v-flex>
       <v-flex xs4>
-        <v-checkbox label="Encrypt Payload" value="true" primary dark hide-details></v-checkbox>
+        <v-switch
+          :label="config.encryptPayload ? 'On' : 'Off'"
+          v-model="config.encryptPayload"
+          dark
+        ></v-switch>
       </v-flex>
     </v-layout>
     <v-layout row justify-center>
-      <v-btn primary light>Save Changes</v-btn>
+      <v-btn
+        primary
+        :light="!saveDisabled"
+        :disabled="saveDisabled"
+        @click.native="saveChanges"
+      >Save Changes</v-btn>
       <v-btn primary flat>Cancel</v-btn>
     </v-layout>
   </div>
@@ -67,13 +85,44 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Component from 'vue-class-component'
+import {mapMutations} from 'vuex'
+import Component, { createDecorator } from 'vue-class-component'
+import { HawkOptions } from 'bridgit'
+import types from '../store/mutation-types'
+
+function Mutation(mutationType) {
+  return createDecorator((options, key) => {
+    if (!options.methods) options.methods = {}
+    options.methods[key] = function (payload) {
+      return this.$store.commit(mutationType, payload)
+    }
+  })
+}
 
 @Component({
-  name: 'NewHawkConfig'
+  name: 'NewHawkConfig',
 })
 export default class NewHawkConfig extends Vue {
+  configName: string = ''
+  config: HawkOptions = {
+    id: '',
+    key: '',
+    encryptPayload: true,
+    algorithm: 'sha256'
+  }
 
+  @Mutation(types.SAVE_CONFIGURATION) saveConfiguration
+
+  get saveDisabled() {
+    return !this.config.id || !this.config.key
+  }
+
+  saveChanges() {
+    this.saveConfiguration({
+      name: this.configName,
+      config: this.config
+    })
+  }
 }
 </script>
 

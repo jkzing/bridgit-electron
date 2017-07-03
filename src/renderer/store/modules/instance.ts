@@ -20,8 +20,6 @@ const Mutations = {
 
 export default class Instance implements Module<State, any> {
 
-  namespaced: boolean = true
-
   state: State
   mutations = Mutations
   getters = Getters
