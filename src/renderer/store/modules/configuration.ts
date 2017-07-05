@@ -1,6 +1,7 @@
 import { Module, ActionTree, ActionContext, GetterTree, MutationTree } from 'vuex'
 import types from '../mutation-types'
 import { HawkOptions } from 'bridgit'
+import _ from 'lodash'
 
 type ConfigPayload = {
   name: string,
@@ -26,7 +27,7 @@ const Mutations = {
       config
     } = payload
     state.saved = Object.assign({}, state.saved, {
-      [name]: config
+      [name]: _.clone(config)
     })
   }
 }

@@ -86,18 +86,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import {mapMutations} from 'vuex'
-import Component, { createDecorator } from 'vue-class-component'
+import Component from 'vue-class-component'
 import { HawkOptions } from 'bridgit'
 import types from '../store/mutation-types'
+import { Mutation } from '../utils/decorators'
 
-function Mutation(mutationType) {
-  return createDecorator((options, key) => {
-    if (!options.methods) options.methods = {}
-    options.methods[key] = function (payload) {
-      return this.$store.commit(mutationType, payload)
-    }
-  })
-}
 
 @Component({
   name: 'NewHawkConfig',
