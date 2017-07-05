@@ -1,0 +1,10 @@
+@import './variables.scss';
+
+.global-alert {
+  position: fixed;
+  top: 52px;
+  left: 0;
+  z-index: $zindex-ex-front;
+
+  width: 100%;
+}

@@ -115,6 +115,12 @@ export default class NewHawkConfig extends Vue {
       name: this.configName,
       config: this.config
     })
+    this.$alert({
+      message: 'Configuration created successfully.'
+    })
+    this.$router.push({
+      name: 'LandingPage'
+    })
   }
 }
 </script>
