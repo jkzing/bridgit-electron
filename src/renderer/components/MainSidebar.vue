@@ -24,13 +24,13 @@
     </v-list>
     <v-list class="pt-0" dense>
       <v-divider></v-divider>
-      <v-list-item v-for="item in items" :key="item">
+      <v-list-item v-for="(conf, key) in confs" :key="key">
         <v-list-tile>
           <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>{{ 'dashboard' }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            <v-list-tile-title>{{ conf.name }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list-item>
@@ -41,6 +41,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+
+import { State } from '../utils/decorators'
 
 @Component({
   name: 'MainSidebar',
@@ -54,6 +56,8 @@ export default class MainSidebar extends Vue {
     { title: 'Home', icon: 'dashboard' },
     { title: 'About', icon: 'question_answer' }
   ]
+
+  @State('conf.saved') confs
 }
 </script>
 

@@ -28,10 +28,11 @@ const Mutations = {
       name,
       config
     } = payload
+    let toSave = _.cloneDeep(payload)
     // make sure name exists
-    let displayName = name || 'Default Name'
+    toSave.name = toSave.name || 'Default Name'
     state.saved = Object.assign({}, state.saved, {
-      [configId++]: _.clone(config)
+      [configId++]: toSave
     })
   }
 }
