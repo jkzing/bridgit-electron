@@ -3,6 +3,8 @@ import types from '../mutation-types'
 import { HawkOptions } from 'bridgit'
 import _ from 'lodash'
 
+let configId = 0
+
 type ConfigPayload = {
   name: string,
   config: HawkOptions
@@ -26,8 +28,10 @@ const Mutations = {
       name,
       config
     } = payload
+    // make sure name exists
+    let displayName = name || 'Default Name'
     state.saved = Object.assign({}, state.saved, {
-      [name]: _.clone(config)
+      [configId++]: _.clone(config)
     })
   }
 }

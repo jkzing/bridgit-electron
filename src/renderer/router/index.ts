@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import LandingPage from '@/components/LandingPage.vue'
-import NewHawkConfig from '@/components/NewHawkConfig.vue'
+import HawkConfig from '@/components/HawkConfig.vue'
 
 Vue.use(VueRouter)
 
@@ -16,7 +16,7 @@ export default new VueRouter({
     {
       path: '/new_hawk_config',
       name: 'NewHawkConfig',
-      component: NewHawkConfig
+      component: HawkConfig
     },
     {
       path: '*',

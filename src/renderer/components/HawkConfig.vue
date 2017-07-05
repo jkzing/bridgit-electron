@@ -93,10 +93,10 @@ import { Mutation } from '../utils/decorators'
 
 
 @Component({
-  name: 'NewHawkConfig',
+  name: 'HawkConfig',
 })
-export default class NewHawkConfig extends Vue {
-  configName: string = ''
+export default class HawkConfig extends Vue {
+  configName: string = 'Default Name'
   config: HawkOptions = {
     id: '',
     key: '',
