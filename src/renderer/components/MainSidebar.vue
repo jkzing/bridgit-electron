@@ -25,7 +25,7 @@
     <v-list class="pt-0" dense>
       <v-divider></v-divider>
       <v-list-item v-for="(conf, key) in confs" :key="key">
-        <v-list-tile>
+        <v-list-tile @click.native.stop="navTo(key)">
           <v-list-tile-action>
             <v-icon>{{ 'dashboard' }}</v-icon>
           </v-list-tile-action>
@@ -58,6 +58,15 @@ export default class MainSidebar extends Vue {
   ]
 
   @State('conf.saved') confs
+
+  navTo(id) {
+    this.$router.push({
+      name: 'HawkOutput',
+      params: {
+        confId: id
+      }
+    })
+  }
 }
 </script>
 
